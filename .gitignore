@@ -1,0 +1,10 @@
+# Swap files
+.*
+!.gitignore
+
+# Temporary files
+*~
+
+# Build files
+*.hi
+*.o
