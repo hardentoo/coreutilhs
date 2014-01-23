@@ -1,0 +1,67 @@
+About coreutilhs
+================
+
+coreutilhs is a collection of Haskell versions of some of the programs found 
+in GNU coreutils, usable as examples and tutorials for Haskell newbies. 
+coreutilhs give newbies a taste for what "real" Haskell programs might look 
+like.
+
+The current goal is to implement simple self-contained version of all of the 
+programs in GNU coreutils. A program should do roughly the same as its 
+coretuils-equivalent without any options.
+
+There are currently no plans to implement any options, as coreutilhs should 
+have very short programs that are easy to follow for newbies. In the future, 
+however, completely full replacements of the coreutils programs might be 
+considered implemented for fun.
+
+Also note that performance is not a goal right now. If performance gets in the 
+way of readability, it is not considered. In the future this might change as 
+well, for fun.
+
+The programs are all self-contained little pieces that can be run with 
+runhaskell, or compiled with GHC -make *.hs. 
+
+
+Versioning
+==========
+
+coreutilsh follows x.y version numbering.
+
+x means a big milestone has been reached. The current x+1 milestone is 
+implementing rudimentary versions of all relevant programs from GNU Coreutils. 
+Which ones are indeed relevant is yet to be decided.
+
+y means a big change. This is mostly for when a program has been added, or 
+substantially improved.
+
+Minor bug fixes do not lead to releases by themselves. Severe bug fixes 
+qualify as a "big change" though. And if there are a bunch of minor bug fixes 
+just waiting to be released, and no proper release is on the horizon, a y+1 
+bump may take place.
+
+
+Licensing and Legalese
+=======================
+
+coreutilhs is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+coreutilhs is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with bweakfwu.  If not, see <http://www.gnu.org/licenses/>.
+
+
+Contributing To the Project
+===========================
+
+Send patches to <alexander@plaimi.net>. Keep the programs short and simple to 
+follow.
+
+/* vim: set textwidth=78 et spell formatoptions=actw2 autoindent: */
