@@ -26,7 +26,7 @@ main ::  IO ()
 main = do
   input <- getArgs
   case input of
-    []    -> interact id
+    []    -> getContents >>= putStrLn
     files -> forM_ files $ \file -> do
       h <- openFile file WriteMode
       stdin <- getContents

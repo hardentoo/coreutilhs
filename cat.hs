@@ -25,5 +25,5 @@ main ::  IO ()
 main = do
   input <- getArgs
   case input of
-    [] -> interact id
+    [] -> getContents >>= putStr
     files -> forM_ files $ putStr <=< readFile
