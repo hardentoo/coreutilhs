@@ -18,6 +18,7 @@
 -} module Main where
 
 import Control.Applicative ((<$>))
+import Data.Monoid (Monoid, mappend, mconcat, mempty)
 import System.Environment (getArgs)
 import Text.Printf (printf)
 
@@ -27,6 +28,11 @@ data Counter =
           wor :: Int, -- Words.
           lin :: Int  -- Lines.
           }
+
+instance Monoid Counter where
+  mempty = Counter 0 0 0
+  mappend (Counter c w l) (Counter c' w' l') =
+    Counter (c + c') (w + w') (l + l')
 
 -- Count the number of chars, words & lines of STDIN or given files.
 main ::  IO ()
@@ -55,6 +61,6 @@ formatCounter :: Counter -> String
 formatCounter c = printf "%10d%10d%10d" (lin c) (wor c) (cha c)
 
 total ::  [Counter] -> String
-total c =
-  printf "%10d%10d%10d total\n" (get lin) (get wor) (get cha)
-  where get f = sum $ map f c
+total cs =
+  printf "%10d%10d%10d total\n" l w c
+  where Counter c w l = mconcat cs
