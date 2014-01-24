@@ -18,8 +18,7 @@
 -} module Main where
 
 import Control.Monad (forever)
-import Text.Printf (printf)
 
 -- Output "y" forever, until killed.
 main ::  IO ()
-main = forever $ printf "y\n"
+main = forever $ putStrLn "y"
