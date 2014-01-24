@@ -24,7 +24,7 @@ import System.IO (IOMode (WriteMode), hClose, openFile)
 -- Make files at the passed in paths.
 main ::  IO ()
 main = do
-  paths <- getArgs
-  if null paths
-    then putStrLn "touch: missing file operand"
-    else forM_ paths $ \path -> openFile path WriteMode >>= hClose
+  input <- getArgs
+  case input of
+    []    -> putStrLn "touch: missing file operand"
+    files -> forM_ files $ \file -> openFile file WriteMode >>= hClose

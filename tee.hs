@@ -24,11 +24,11 @@ import System.IO (IOMode (WriteMode), hClose, hPutStr, openFile)
 -- Print the contents of STDIN to STDOUT and given files.
 main ::  IO ()
 main = do
-  paths <- getArgs
-  if null paths
-    then interact id
-    else forM_ paths $ \path -> do
-      h <- openFile path WriteMode
+  input <- getArgs
+  case input of
+    []    -> interact id
+    files -> forM_ files $ \file -> do
+      h <- openFile file WriteMode
       stdin <- getContents
       hPutStr h stdin
       hClose h

@@ -24,6 +24,6 @@ import System.Environment (getArgs)
 main ::  IO ()
 main = do
   input <- getArgs
-  if null input
-    then interact id
-    else forM_ input $ putStr <=< readFile
+  case input of
+    [] -> interact id
+    files -> forM_ files $ putStr <=< readFile

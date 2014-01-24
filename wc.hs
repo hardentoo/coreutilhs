@@ -32,7 +32,9 @@ data Counter =
 main ::  IO ()
 main = do
   input <- getArgs
-  if null input then interact countStdin else handleFiles input >>= putStr
+  case input of
+    []    -> interact countStdin
+    files -> handleFiles files >>= putStr
   where handleFiles files = countFiles . zip files <$> mapM readFile files
 
 countStdin ::  String -> String

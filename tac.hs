@@ -24,7 +24,7 @@ import System.Environment (getArgs)
 main ::  IO ()
 main = do
   input <- getArgs
-  if null input
-    then interact reverseLines
-    else forM_ input $ putStr . reverseLines <=< readFile
+  case input of
+    []    -> interact reverseLines
+    files -> forM_ files $ putStr . reverseLines <=< readFile
   where reverseLines = unlines . reverse . lines

@@ -25,11 +25,11 @@ import Text.Printf (printf)
 main ::  IO ()
 main = do
   input <- getArgs
-  if null input
-    then interact (unlines . lastN 10 . lines)
-    else forM_ input $ \path -> do
-      contents <- readFile path
-      printf "==> %s <==\n%s\n" path . unlines . lastN 10 $ lines contents
+  case input of
+    [] ->    interact (unlines . lastN 10 . lines)
+    files -> forM_ files $ \file -> do
+      contents <- readFile file
+      printf "==> %s <==\n%s\n" file . unlines . lastN 10 $ lines contents
 
 lastN ::  Int -> [String] -> [String]
 lastN n s =
