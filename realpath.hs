@@ -32,21 +32,21 @@ main = do
     [] -> putStrLn "realpath: missing file operand"
     files -> forM_ files $ \f ->
       (canonicalizePath f >>= putStrLn)
-        `catch` canonicalizeDirectory (basename f) (dirname f)
+        `catch` canonicalizeDirectory (dirname f) (basename f)
   where
     canonicalizeDirectory ::  String -> String -> IOError -> IO ()
-    canonicalizeDirectory base dir _ =
-      ((canonicalizePath . nulldot) base >>= \path ->
-        printf "%s/%s\n" path dir) `catch` doesNotExist base dir
+    canonicalizeDirectory dir base _ =
+      ((canonicalizePath . nulldot) dir >>= \path ->
+        printf "%s/%s\n" path base) `catch` doesNotExist dir base
     doesNotExist ::  String -> String -> IOError -> IO ()
-    doesNotExist base dir _ =
-      printf "realpath: '%s'/%s: No such file or directory\n" base dir
+    doesNotExist dir base _ =
+      printf "realpath: '%s'/%s: No such file or directory\n" dir base
 
 nulldot ::  String -> String
 nulldot s = if null s then "." else s
 
-basename ::  String -> String
-basename f = joinPath . init . splitPath $ f
-
 dirname ::  String -> String
-dirname f = last . splitPath $ f
+dirname f = joinPath . init . splitPath $ f
+
+basename ::  String -> String
+basename f = last . splitPath $ f
