@@ -40,4 +40,5 @@ main = do
         putStrLn (joinPath [path, base])) `catch` doesNotExist dir base
     doesNotExist ::  String -> String -> IOError -> IO ()
     doesNotExist dir base _ =
-      printf "realpath: '%s'/%s: No such file or directory\n" dir base
+      printf "realpath: '%s': No such file or directory\n" $
+        joinPath [dir, base]
