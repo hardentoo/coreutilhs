@@ -36,11 +36,8 @@ main = do
   where
     canonicalizeDirectory ::  String -> String -> IOError -> IO ()
     canonicalizeDirectory dir base _ =
-      ((canonicalizePath . nulldot) dir >>= \path ->
+      (canonicalizePath dir >>= \path ->
         putStrLn (joinPath [path, base])) `catch` doesNotExist dir base
     doesNotExist ::  String -> String -> IOError -> IO ()
     doesNotExist dir base _ =
       printf "realpath: '%s'/%s: No such file or directory\n" dir base
-
-nulldot ::  String -> String
-nulldot s = if null s then "." else s
