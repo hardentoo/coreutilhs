@@ -21,7 +21,7 @@ import Control.Exception (catch)
 import Control.Monad (forM_)
 import System.Directory (canonicalizePath)
 import System.Environment (getArgs)
-import System.FilePath.Posix (takeBaseName, takeDirectory)
+import System.FilePath.Posix (joinPath, takeBaseName, takeDirectory)
 import Text.Printf (printf)
 
 -- Print the resolved path.
@@ -37,7 +37,7 @@ main = do
     canonicalizeDirectory ::  String -> String -> IOError -> IO ()
     canonicalizeDirectory dir base _ =
       ((canonicalizePath . nulldot) dir >>= \path ->
-        printf "%s/%s\n" path base) `catch` doesNotExist dir base
+        putStrLn (joinPath [path, base])) `catch` doesNotExist dir base
     doesNotExist ::  String -> String -> IOError -> IO ()
     doesNotExist dir base _ =
       printf "realpath: '%s'/%s: No such file or directory\n" dir base
