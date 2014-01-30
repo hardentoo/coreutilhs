@@ -21,7 +21,7 @@ import Control.Exception (catch)
 import Control.Monad (forM_)
 import System.Directory (canonicalizePath)
 import System.Environment (getArgs)
-import System.FilePath.Posix (joinPath, splitPath)
+import System.FilePath.Posix (takeBaseName, takeDirectory)
 import Text.Printf (printf)
 
 -- Print the resolved path.
@@ -32,7 +32,7 @@ main = do
     [] -> putStrLn "realpath: missing file operand"
     files -> forM_ files $ \f ->
       (canonicalizePath f >>= putStrLn)
-        `catch` canonicalizeDirectory (dirname f) (basename f)
+        `catch` canonicalizeDirectory (takeDirectory f) (takeBaseName f)
   where
     canonicalizeDirectory ::  String -> String -> IOError -> IO ()
     canonicalizeDirectory dir base _ =
@@ -44,9 +44,3 @@ main = do
 
 nulldot ::  String -> String
 nulldot s = if null s then "." else s
-
-dirname ::  String -> String
-dirname f = joinPath . init . splitPath $ f
-
-basename ::  String -> String
-basename f = last . splitPath $ f
