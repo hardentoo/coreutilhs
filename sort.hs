@@ -22,6 +22,7 @@ import Control.Applicative ((<$>))
 import Data.List (sort)
 import System.Environment (getArgs)
 
+main ::  IO ()
 main = do
   input <- getArgs
   let contents = if null input then getContents else readFile (head input)
