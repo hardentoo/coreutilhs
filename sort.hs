@@ -1,5 +1,6 @@
 {-
 - Copyright (C) 2014 Allen Guo <guoguo12@gmail.com>
+- Copyright (C) 2014 Alexander Berntsen <alexander@plaimi.net>
 -
 - This file is part of coreutilhs.
 -
@@ -17,11 +18,11 @@
 - along with coreutilhs.  If not, see <http://www.gnu.org/licenses/>.
 -} module Main where
 
+import Control.Applicative ((<$>))
 import Data.List (sort)
 import System.Environment (getArgs)
 
 main = do
   input <- getArgs
-  case input of
-    [] -> fmap (sort . lines) getContents >>= mapM_ putStrLn
-    files -> fmap (sort . lines) (readFile $ files !! 0) >>= mapM_ putStrLn
+  let contents = if null input then getContents else readFile (head input)
+  sort . lines <$> contents >>= mapM_ putStrLn
