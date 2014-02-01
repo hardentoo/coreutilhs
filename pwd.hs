@@ -21,5 +21,4 @@
 import System.Directory (getCurrentDirectory)
 
 main ::  IO ()
-main = do
-  getCurrentDirectory >>= putStrLn
+main = getCurrentDirectory >>= putStrLn
