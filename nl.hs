@@ -20,22 +20,15 @@
 
 import Control.Applicative ((<$>))
 import System.Environment (getArgs)
-
--- Accepts and enumerates input from STDIN.
-enumerateInput :: Int -> IO ()
-enumerateInput n = join <$> getLine >>= putStrLn >> enumerateInput (n + 1)
-  where join line = concat ["     ", show n, "  ", line]
+import Text.Printf
 
 -- Enumerates text.
-enumerateText :: String -> String
-enumerateText text = unlines $ zipWith join [1..] (lines text)
-  where join n line = concat ["    ", show n, "  ", line]
-
 main ::  IO ()
 main = do
-  files <- getArgs
-  case files of
-    [] -> enumerateInput 1
-    files -> do
-      text <- concat <$> mapM readFile files
-      putStrLn $ enumerateText text
+  input <- getArgs
+  case input of
+    [] -> getContents >>= output . enumerate
+    files -> concat <$> mapM readFile files >>= output . enumerate
+  where enumerate :: String -> [(Int, String)]
+        enumerate xs = zip (enumFrom 1) $ lines xs
+        output = mapM_ (uncurry $ printf "\t%d %s\n")
