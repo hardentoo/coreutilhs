@@ -18,7 +18,6 @@
 - along with coreutilhs.  If not, see <http://www.gnu.org/licenses/>.
 -} module Main where
 
-import Control.Applicative ((<$>))
 import System.Environment (getArgs)
 import Text.Printf
 
@@ -28,7 +27,7 @@ main = do
   input <- getArgs
   case input of
     [] -> getContents >>= output . enumerate
-    files -> concat <$> mapM readFile files >>= output . enumerate
+    files -> mapM readFile files >>= output . enumerate . concat
   where enumerate :: String -> [(Int, String)]
         enumerate xs = zip (enumFrom 1) $ lines xs
         output = mapM_ (uncurry $ printf "\t%d %s\n")
