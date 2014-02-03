@@ -19,7 +19,7 @@
 
 import Control.Monad (forM_)
 import System.Environment (getArgs)
-import System.FilePath.Posix (joinPath, splitPath)
+import System.FilePath.Posix (takeDirectory)
 
 -- Print the parent directory of a file.
 main ::  IO ()
@@ -27,6 +27,7 @@ main = do
   input <- getArgs
   case input of
     [] -> putStrLn "dirname: missing file operand"
-    files -> forM_ files $ \file -> 
-      let dirname = joinPath . init . splitPath $ file
-      in  putStrLn $ if null dirname then "." else init dirname
+    files -> forM_ files $ putStrLn . takeDirectory . stripSlash
+  where stripSlash xs = case last xs of
+                          '/' -> init xs
+                          _   -> xs
