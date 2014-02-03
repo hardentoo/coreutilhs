@@ -21,7 +21,7 @@
 import System.Environment (getArgs)
 import Text.Printf
 
--- Enumerates text.
+-- Enumerates lines from STDIN or given files
 main ::  IO ()
 main = do
   input <- getArgs
