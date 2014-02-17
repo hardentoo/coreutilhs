@@ -36,5 +36,5 @@ bork ::  String -> IOError -> IO ()
 bork dir err = printf "rmdir: failed to remove '%s': %s\n" dir reason
   -- This should handle way more exceptions.
   where reason = if isDoesNotExistError err
-                   then "no such file or directory"
-                   else "is it a directory, and is it empty?"
+                   then "No such file or directory"
+                   else "Is it a directory, and is it empty?"
