@@ -20,7 +20,7 @@
 import Control.Exception (catch)
 import Control.Monad (forM_)
 import System.Environment (getArgs)
-import System.IO.Error (isDoesNotExistError)
+import System.IO.Error (isDoesNotExistError, isPermissionError)
 import System.Posix.Directory (removeDirectory)
 import Text.Printf (printf)
 
@@ -34,7 +34,7 @@ main = do
 
 bork ::  String -> IOError -> IO ()
 bork dir err = printf "rmdir: failed to remove '%s': %s\n" dir reason
-  -- This should handle way more exceptions.
-  where reason = if isDoesNotExistError err
-                   then "No such file or directory"
-                   else "Is it a directory, and is it empty?"
+  where reason
+          | isDoesNotExistError err   = "No such file or directory"
+          | isPermissionError   err   = "Permission denied"
+          | otherwise                 = "Something went wrong"
