@@ -1,24 +1,24 @@
 About coreutilhs
 ================
 
-coreutilhs is a collection of Haskell versions of useful CLI-programs, such as 
-the ones found in GNU coreutils and among the BASH built-ins. The idea is to 
-have a set of self-contained Haskell example programs that are suitable for 
-tutorials and reading material for Haskell newbies. coreutilhs give newbies a 
-taste for how to solve "real" tasks in Haskell, and hopefully the utilhs can 
-help motivate newbies.
+coreutilhs is a collection of Haskell versions of useful CLI-programs, 
+such as the ones found in GNU coreutils and among the BASH built-ins. 
+The idea is to have a set of self-contained Haskell example programs 
+that are suitable for tutorials and reading material for Haskell 
+newbies. coreutilhs give newbies a taste for how to solve "real" tasks 
+in Haskell, and hopefully the utilhs can help motivate newbies.
 
-The current goal is to implement simple self-contained version of some subset 
-of GNU coreutils and the BASH built-ins. A program should do roughly the same 
-as its coreutils/BASH-equivalent without any options.
+The current goal is to implement simple self-contained version of some 
+subset of GNU coreutils and the BASH built-ins. A program should do 
+roughly the same as its coreutils/BASH-equivalent without any options.
 
-There are currently no plans to implement any options, as coreutilhs should 
-have very short programs that are easy to follow for newbies. In the future, 
-however, options might be considered implemented for fun.
+There are currently no plans to implement any options, as coreutilhs 
+should have very short programs that are easy to follow for newbies. In 
+the future, however, options might be considered implemented for fun.
 
-Also note that performance is not a goal right now. If performance gets in the 
-way of readability, it is not considered. In the future this might change as 
-well, for fun.
+Also note that performance is not a goal right now. If performance gets 
+in the way of readability, it is not considered. In the future this 
+might change as well, for fun.
 
 The programs are all self-contained little pieces that can be run with 
 runhaskell, or compiled with GHC -make *.hs. 
@@ -30,16 +30,16 @@ Versioning
 coreutilsh follows x.y version numbering.
 
 x means a big milestone has been reached. The current x+1 milestone is 
-implementing rudimentary versions of a big chunk of interesting programs. 
-There is no formalised target subset as of now.
+implementing rudimentary versions of a big chunk of interesting 
+programs. There is no formalised target subset as of now.
 
-y means a big change. This is mostly for when a program has been added, or 
-substantially improved.
+y means a big change. This is mostly for when a program has been added, 
+or substantially improved.
 
 Minor bug fixes do not lead to releases by themselves. Severe bug fixes 
-qualify as a "big change" though. And if there are a bunch of minor bug fixes 
-just waiting to be released, and no proper release is on the horizon, a y+1 
-bump may take place.
+qualify as a "big change" though. And if there are a bunch of minor bug 
+fixes just waiting to be released, and no proper release is on the 
+horizon, a y+1 bump may take place.
 
 
 Licensing and Legalese
@@ -62,7 +62,7 @@ along with coreutilhs.  If not, see <http://www.gnu.org/licenses/>.
 Contributing To the Project
 ===========================
 
-Send patches to <alexander@plaimi.net>. Keep the programs short, and simple to 
-follow.
+Send patches to <alexander@plaimi.net>. Keep the programs short, and 
+simple to follow.
 
-/* vim: set textwidth=78 et spell formatoptions=actw2 autoindent: */
+/* vim: set textwidth=72 et spell formatoptions=actw2 autoindent: */
