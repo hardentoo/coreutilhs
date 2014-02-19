@@ -20,7 +20,7 @@
 import Control.Monad (forM_, (<=<))
 import System.Environment (getArgs)
 
--- Print the contents of STDIN or given files.
+-- Print the contents of STDIN or given files, with reversed lines.
 main ::  IO ()
 main = do
   input <- getArgs
