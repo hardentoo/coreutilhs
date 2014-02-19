@@ -24,7 +24,7 @@ import System.IO.Error (isDoesNotExistError, isPermissionError)
 import System.Posix.Files (removeLink)
 import Text.Printf (printf)
 
--- Remove empty directories.
+-- Remove files.
 main ::  IO ()
 main = do
   input <- getArgs
@@ -34,7 +34,6 @@ main = do
 
 bork ::  String -> IOError -> IO ()
 bork dir err = printf "rmdir: failed to remove '%s': %s\n" dir reason
-  -- This should handle way more exceptions.
   where reason
           | isDoesNotExistError   err = "No such file or directory"
           | isPermissionError     err = "Permission denied"
