@@ -29,11 +29,11 @@ main ::  IO ()
 main = do
   input <- getArgs
   case input of
-    []   -> putStrLn "rmdir: missing file operand"
-    dirs -> forM_ dirs $ \d -> removeLink d `catch` bork d
+    []    -> putStrLn "rm: missing file operand"
+    files -> forM_ files $ \f -> removeLink f `catch` bork f
 
 bork ::  String -> IOError -> IO ()
-bork dir err = printf "rmdir: failed to remove '%s': %s\n" dir reason
+bork file err = printf "rm: failed to remove '%s': %s\n" file reason
   where reason
           | isDoesNotExistError   err = "No such file or directory"
           | isPermissionError     err = "Permission denied"
