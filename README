@@ -31,7 +31,8 @@ coreutilsh follows x.y version numbering.
 
 x means a big milestone has been reached. The current x+1 milestone is 
 implementing rudimentary versions of a big chunk of interesting 
-programs. There is no formalised target subset as of now.
+programs. The only program missing now is ls. After this milestone has 
+been reached, I will decide what I want to do for milestone 2.
 
 y means a big change. This is mostly for when a program has been added, 
 or substantially improved.
