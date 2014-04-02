@@ -19,8 +19,9 @@
 
 import Control.Exception (catch)
 import Control.Monad (forM_)
+import Data.Text (pack, toTitle, unpack)
 import System.Environment (getArgs)
-import System.IO.Error (isDoesNotExistError, isPermissionError)
+import System.IO.Error (ioeGetErrorString)
 import System.Posix.Files (removeLink)
 import Text.Printf (printf)
 
@@ -33,8 +34,6 @@ main = do
     files -> forM_ files $ \f -> removeLink f `catch` bork f
 
 bork ::  String -> IOError -> IO ()
-bork file err = printf "rm: failed to remove '%s': %s\n" file reason
-  where reason
-          | isDoesNotExistError   err = "No such file or directory"
-          | isPermissionError     err = "Permission denied"
-          | otherwise                 = "Something went wrong"
+bork dir err =
+  printf "cp: cannot stat '%s': %s\n" dir $
+      unpack . toTitle . pack $ ioeGetErrorString err

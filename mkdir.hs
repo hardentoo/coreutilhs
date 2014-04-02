@@ -19,8 +19,9 @@
 
 import Control.Exception (catch)
 import Control.Monad (forM_)
+import Data.Text (pack, toTitle, unpack)
 import System.Environment (getArgs)
-import System.IO.Error (isAlreadyExistsError, isPermissionError)
+import System.IO.Error (ioeGetErrorString)
 import System.Posix.Directory (createDirectory)
 import Text.Printf (printf)
 
@@ -33,8 +34,6 @@ main = do
     dirs -> forM_ dirs $ \d -> createDirectory d 0o755 `catch` bork d
 
 bork ::  String -> IOError -> IO ()
-bork dir err = printf "mkdir: cannot create directory '%s': %s\n" dir reason
-  where reason
-          | isPermissionError    err = "Permission denied"
-          | isAlreadyExistsError err = "File exists"
-          | otherwise                = "Something went wrong"
+bork dir err =
+  printf "cp: cannot stat '%s': %s\n" dir $
+      unpack . toTitle . pack $ ioeGetErrorString err

@@ -19,9 +19,10 @@
 
 import Control.Exception (catch)
 import Control.Monad (forM_, when)
+import Data.Text (pack, toTitle, unpack)
 import System.Directory (copyFile, doesDirectoryExist)
 import System.Environment (getArgs)
-import System.IO.Error (isDoesNotExistError, isPermissionError)
+import System.IO.Error (ioeGetErrorString)
 import Text.Printf (printf)
 
 -- Copy source file to destination, or source files to destination directory.
@@ -42,8 +43,6 @@ main = do
         else printf "cp: target '%s' is not a directory\n" lfile
 
 bork ::  String -> IOError -> IO ()
-bork dir err = printf "cp: cannot stat '%s': %s\n" dir reason
-  where reason
-          | isPermissionError   err = "Permission denied"
-          | isDoesNotExistError err = "No such file or directory"
-          | otherwise               = "Something went wrong"
+bork dir err =
+  printf "cp: cannot stat '%s': %s\n" dir $
+      unpack . toTitle . pack $ ioeGetErrorString err
