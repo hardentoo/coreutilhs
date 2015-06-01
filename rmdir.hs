@@ -35,5 +35,5 @@ main = do
 
 bork ::  String -> IOError -> IO ()
 bork dir err =
-  printf "cp: cannot stat '%s': %s\n" dir $
+  printf "rmdir: cannot stat '%s': %s\n" dir $
       unpack . toTitle . pack $ ioeGetErrorString err
