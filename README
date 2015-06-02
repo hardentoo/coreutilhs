@@ -27,7 +27,7 @@ runhaskell, or compiled with GHC -make *.hs.
 Versioning
 ==========
 
-coreutilsh follows x.y version numbering.
+coreutilhs follows x.y version numbering.
 
 x means a big milestone has been reached. The current x+1 milestone is 
 implementing rudimentary versions of a big chunk of interesting 
